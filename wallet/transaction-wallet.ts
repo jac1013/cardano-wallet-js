@@ -49,6 +49,10 @@ export class TransactionWallet implements ApiTransaction {
 	}
 
 	static from(tx: ApiTransaction): TransactionWallet {
-		return new this(tx.id, tx.amount, tx.fee, tx.deposit, tx.inserted_at, tx.expires_at, tx.pending_since, tx.depth, tx.direction, tx.inputs, tx.outputs, tx.withdrawals, tx.mint, tx.status);
+		const txWallet = new this(tx.id, tx.amount, tx.fee, tx.deposit, tx.inserted_at, tx.expires_at, tx.pending_since, tx.depth, tx.direction, tx.inputs, tx.outputs, tx.withdrawals, tx.mint, tx.status);
+		if (tx.metadata) {
+			txWallet.metadata = tx.metadata;
+		}
+		return txWallet;
 	}
 }
